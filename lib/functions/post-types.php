@@ -5,7 +5,7 @@
  * This file registers any custom post types
  *
  * @package      Core_Functionality
- * @since        1.0.0
+ * @since        0.0.1
  * @link         https://github.com/Herm71/blackbird-core-functionality-plugin.git
  * @author       Jason Chafin
  * @copyright    Copyright (c) 2011, Jason Chafin
@@ -14,7 +14,7 @@
 
 /**
  * Create Rotator post type
- * @since 1.0.0
+ * @since 0.0.1
  * @link http://codex.wordpress.org/Function_Reference/register_post_type
  */
 
@@ -55,7 +55,7 @@ add_action( 'init', 'bb_register_rotator_post_type' );
 
 /**
  * Create Biz Directory post type
- * @since 1.0.0
+ * @since 0.0.1
  * @link http://codex.wordpress.org/Function_Reference/register_post_type
  */
 
@@ -96,7 +96,7 @@ add_action( 'init', 'bb_register_biz_directory_post_type' );
 
 /**
  * Create Portfolio post type
- * @since 1.0.0
+ * @since 0.0.1
  * @link http://codex.wordpress.org/Function_Reference/register_post_type
  */
 
@@ -137,7 +137,7 @@ add_action( 'init', 'bb_register_portfolio_post_type' );
 
 /**
  * Create Projects post type
- * @since 1.0.0
+ * @since 0.0.1
  * @link http://codex.wordpress.org/Function_Reference/register_post_type
  */
 
@@ -178,7 +178,7 @@ add_action( 'init', 'bb_register_projects_post_type' );
 
 /**
  * Create Press post type
- * @since 1.0.0
+ * @since 0.0.1
  * @link http://codex.wordpress.org/Function_Reference/register_post_type
  */
 
@@ -219,7 +219,7 @@ add_action( 'init', 'bb_register_press_post_type' );
 
 /**
  * Create Team Member post type
- * @since 1.0.0
+ * @since 0.0.1
  * @link http://codex.wordpress.org/Function_Reference/register_post_type
  */
 
@@ -260,7 +260,7 @@ add_action( 'init', 'bb_register_team_member_post_type' );
 
 /**
  * Create Testimonials post type
- * @since 1.0.0
+ * @since 0.0.1
  * @link http://codex.wordpress.org/Function_Reference/register_post_type
  */
 

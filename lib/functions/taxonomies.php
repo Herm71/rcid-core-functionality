@@ -5,17 +5,17 @@
  * This file registers any custom taxonomies
  *
  * @package      Core_Functionality
- * @since        1.0.0
+ * @since        0.0.1
  * @link         https://github.com/Herm71/blackbird-core-functionality-plugin.git
  * @author       Jason Chafin
- * @copyright    Copyright (c) 2011, Jason Chafin
+ * @copyright    Copyright (c) 2020, Jason Chafin
  * @license      http://opensource.org/licenses/gpl-2.0.php GNU Public License
  */
 
 
 /**
  * Create Location Taxonomy
- * @since 1.0.0
+ * @since 0.0.1
  * @link http://codex.wordpress.org/Function_Reference/register_taxonomy
  */
 
@@ -32,9 +32,9 @@ function bb_register_location_taxonomy() {
 		'add_new_item' => 'Add New Location',
 		'new_item_name' => 'New Location Name',
 		'menu_name' => 'Location'
-	); 	
+	);
 
-	register_taxonomy( 'rotator-location', array('rotator'), 
+	register_taxonomy( 'rotator-location', array('rotator'),
 		array(
 			'hierarchical' => true,
 			'labels' => $labels,

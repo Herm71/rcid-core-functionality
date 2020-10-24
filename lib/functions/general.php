@@ -5,7 +5,7 @@
  * This file contains any general functions
  *
  * @package      BB_Custom_Functionality
- * @since        1.0.0
+ * @since        0.0.1
  * @link         https://github.com/Herm71/blackbird-core-functionality-plugin.git
  * @author       Jason Chafin
  * @copyright    Copyright (c) 2015, Blackbird Consulting
@@ -14,7 +14,7 @@
 
 /**
  * Don't Update Plugin
- * @since 1.0.0
+ * @since 0.0.1
  *
  * This prevents you being prompted to update if there's a public plugin
  * with the same name.

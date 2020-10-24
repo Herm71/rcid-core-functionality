@@ -12,7 +12,7 @@
 
  * @package      Core_Functionality
 
- * @since        1.0.0
+ * @since        0.0.1
 
  * @link         https://github.com/Herm71/blackbird-core-functionality-plugin.git
 
