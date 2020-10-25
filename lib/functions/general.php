@@ -11,20 +11,6 @@
  * @copyright    Copyright (c) 2015, Blackbird Consulting
  * @license      http://opensource.org/licenses/gpl-2.0.php GNU Public License
  */
-
- /**
-  * Callback function for Text Domain
-  *
-  * @param [type] $r
-  * @param [type] $url
-  * @return void
-  * Description
-  * @package
-  * @since 0.0.2
-  * @author Jason Chafin
-  * @link http://www.blackbirdconsult.com
-  * @license GNU General Public License 2.0+
-  */
 /**
  * Don't Update Plugin
  * @since 0.0.2
@@ -72,19 +58,4 @@ add_filter( 'widget_text', 'do_shortcode' );
          ));
     }
 }
- /**
- * Top bar sidebar.
- */
-add_action( 'widgets_init', 'rcid_topbar_widget' );
-function rcid_topbar_widget() {
-    register_sidebar( array(
-        'name'          => __( 'Topbar', 'ruth-chafin-interior-design' ),
-        'id'            => 'top-sidebar',
-        'class'         => 'top-sidebar',
-        'description'   => __( 'Widgets in this area will be shown in the Top bar.', 'ruth-chafin-interior-design' ),
-        'before_widget' => '',
-        'after_widget'  => '',
-        'before_title'  => '',
-        'after_title'   => ''
-    ) );
-}
+

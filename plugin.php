@@ -33,8 +33,8 @@ include_once ( plugin_dir_path( __FILE__ ) . 'lib/functions/general.php' );
 //include( plugin_dir_path( __FILE__ ) . 'lib/functions/shortcodes.php' );
 
 // Sidebars
-// include ( plugin_dir_path( __FILE__ )  . 'lib/functions/sidebars.php' );
-include 'lib/functions/sidebars.php' ;
+include_once ( plugin_dir_path( __FILE__ )  . 'lib/functions/side-bars.php' );
+
 // Menus
 include_once ( plugin_dir_path( __FILE__ ) . 'lib/functions/menus.php');
 
