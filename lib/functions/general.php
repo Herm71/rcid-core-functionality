@@ -45,3 +45,15 @@ $obj = get_post_type_object('portfolio');
 echo '<pre>';
 print_r($obj);
 echo '</pre>';
+
+ //Top Menu Callback
+ function rcid_top_menu (){
+    if (has_nav_menu('top-menu')) {
+        wp_nav_menu( array(
+            'theme_location' => 'top-menu',
+            'container' =>  'div',
+            'container_class' => 'top-navigation menu-secondary-menu-container',
+            'fallback_cb' => '',
+         ));
+    }
+}

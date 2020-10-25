@@ -35,5 +35,8 @@ include_once( BB_DIR . '/lib/functions/post-types.php' );
 // Sidebars
 //include_once( BB_DIR . '/lib/widgets/sidebars.php' );
 
+// Menus
+include_once( BB_dir . '/lib/functions/menus.php');
+
 // General
 include_once( BB_DIR . '/lib/functions/general.php' );
