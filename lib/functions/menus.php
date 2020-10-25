@@ -8,7 +8,7 @@
 function rcid_custom_menus() {
     register_nav_menus(
       array(
-        'top-menu' => __( 'Top Menu' ),
+        'top-menu' => __( 'Top Menu' , 'ruth-chafin-interior-design'),
       )
     );
   }

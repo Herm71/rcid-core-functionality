@@ -12,6 +12,19 @@
  * @license      http://opensource.org/licenses/gpl-2.0.php GNU Public License
  */
 
+ /**
+  * Callback function for Text Domain
+  *
+  * @param [type] $r
+  * @param [type] $url
+  * @return void
+  * Description
+  * @package
+  * @since 0.0.2
+  * @author Jason Chafin
+  * @link http://www.blackbirdconsult.com
+  * @license GNU General Public License 2.0+
+  */
 /**
  * Don't Update Plugin
  * @since 0.0.2
@@ -37,14 +50,16 @@ function bb_custom_functionality_hidden( $r, $url ) {
 }
 add_filter( 'http_request_args', 'bb_custom_functionality_hidden', 5, 2 );
 
+
+
 // Use shortcodes in widgets
 add_filter( 'widget_text', 'do_shortcode' );
 
-$obj = get_post_type_object('portfolio');
+// $obj = get_post_type_object('portfolio');
 
-echo '<pre>';
-print_r($obj);
-echo '</pre>';
+// echo '<pre>';
+// print_r($obj);
+// echo '</pre>';
 
  //Top Menu Callback
  function rcid_top_menu (){
@@ -56,4 +71,20 @@ echo '</pre>';
             'fallback_cb' => '',
          ));
     }
+}
+ /**
+ * Top bar sidebar.
+ */
+add_action( 'widgets_init', 'rcid_topbar_widget' );
+function rcid_topbar_widget() {
+    register_sidebar( array(
+        'name'          => __( 'Topbar', 'ruth-chafin-interior-design' ),
+        'id'            => 'top-sidebar',
+        'class'         => 'top-sidebar',
+        'description'   => __( 'Widgets in this area will be shown in the Top bar.', 'ruth-chafin-interior-design' ),
+        'before_widget' => '',
+        'after_widget'  => '',
+        'before_title'  => '',
+        'after_title'   => ''
+    ) );
 }

@@ -18,25 +18,23 @@
  *
  */
 
-// Plugin Directory
-define( 'BB_DIR', dirname( __FILE__ ) );
-
 //Include Customization files:
 
+// General
+include_once ( plugin_dir_path( __FILE__ ) . 'lib/functions/general.php' );
+
 // Post Types
-include_once( BB_DIR . '/lib/functions/post-types.php' );
+// include( plugin_dir_path( __FILE__ ) . 'lib/functions/post-types.php' );
 
 // Taxonomies
-//include_once( BB_DIR . '/lib/functions/taxonomies.php' );
+//include( plugin_dir_path( __FILE__ ) . 'lib/functions/taxonomies.php' );
 
 // Shortcodes
-//include_once( BB_DIR . '/lib/widgets/shortcodes.php' );
+//include( plugin_dir_path( __FILE__ ) . 'lib/functions/shortcodes.php' );
 
 // Sidebars
-//include_once( BB_DIR . '/lib/widgets/sidebars.php' );
-
+// include ( plugin_dir_path( __FILE__ )  . 'lib/functions/sidebars.php' );
+include 'lib/functions/sidebars.php' ;
 // Menus
-include_once( BB_dir . '/lib/functions/menus.php');
+include_once ( plugin_dir_path( __FILE__ ) . 'lib/functions/menus.php');
 
-// General
-include_once( BB_DIR . '/lib/functions/general.php' );
