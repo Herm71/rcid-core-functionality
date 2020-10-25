@@ -1,4 +1,6 @@
-# Core Functionality Plugin
+[![GitHub version](https://badge.fury.io/gh/Herm71%2Frcid-core-functionality.svg)](https://badge.fury.io/gh/Herm71%2Frcid-core-functionality)
+
+# RCID Core Functionality Plugin
 
 This is a basic WordPress developer plugin that can contain your site's core functionality. The concept is to keep structural features of a site that are theme independent, such as custom post-types, taxonomies and short-codes out of the theme's code. This will ensure that a future theme change does not affect a site's core functionality.
 
