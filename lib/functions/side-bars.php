@@ -32,12 +32,12 @@ function rcid_footer_one_widget() {
         'after_title'   => ''
     ) );
 }
-add_action( 'widgets_init', 'rcid_footer_three_widget' );
-function rcid_footer_three_widget() {
+add_action( 'widgets_init', 'rcid_footer_two_widget' );
+function rcid_footer_two_widget() {
     register_sidebar( array(
-        'name'          => __( 'Footer Three', 'ruth-chafin-interior-design' ),
-        'id'            => 'footer-three',
-        'class'         => 'footer-three',
+        'name'          => __( 'Footer Two', 'ruth-chafin-interior-design' ),
+        'id'            => 'footer-two',
+        'class'         => 'footer-two',
         'description'   => __( 'Widgets in this area will be shown in footer.', 'ruth-chafin-interior-design' ),
         'before_widget' => '',
         'after_widget'  => '',
