@@ -11,8 +11,8 @@ function rcid_topbar_sidebar() {
         'description'   => __( 'Widgets in this area will be shown in the Top bar.', 'ruth-chafin-interior-design' ),
         'before_widget' => '<div class="rcid-header-bar-widget site-search">',
         'after_widget'  => '</div>',
-        'before_title'  => '<span class="widget-title topbar-widget-title">',
-        'after_title'   => '</span>'
+        'before_title'  => '<h2 class="widget-title topbar-widget-title">',
+        'after_title'   => '</h2>'
     ) );
 }
 
@@ -28,8 +28,8 @@ function rcid_footer_one_widget() {
         'description'   => __( 'Widgets in this area will be shown in footer.', 'ruth-chafin-interior-design' ),
         'before_widget' => '<div id="footer-one" class="footer-one-widget widget">',
         'after_widget'  => '</div>',
-        'before_title'  => '<span class="widget-title footer-widget-title footer-one-widget-title">',
-        'after_title'   => '</span>'
+        'before_title'  => '<h2 class="widget-title footer-widget-title footer-one-widget-title">',
+        'after_title'   => '</h2>'
     ) );
 }
 add_action( 'widgets_init', 'rcid_footer_two_widget' );
@@ -41,8 +41,8 @@ function rcid_footer_two_widget() {
         'description'   => __( 'Widgets in this area will be shown in footer.', 'ruth-chafin-interior-design' ),
         'before_widget' => '<div id="footer-two" class="footer-two-widget widget">',
         'after_widget'  => '</div>',
-        'before_title'  => '<span class="widget-title footer-widget-title footer-two-widget-title">',
-        'after_title'   => '</span>'
+        'before_title'  => '<h2 class="widget-title footer-widget-title footer-two-widget-title">',
+        'after_title'   => '</h2>'
     ) );
 }
 add_action( 'widgets_init', 'rcid_footer_three_widget' );
@@ -54,7 +54,7 @@ function rcid_footer_three_widget() {
         'description'   => __( 'Widgets in this area will be shown in footer.', 'ruth-chafin-interior-design' ),
         'before_widget' => '<div id="footer-one" class="footer-three-widget widget">',
         'after_widget'  => '</div>',
-        'before_title'  => '<span class="widget-title footer-widget-title footer-one-widget-title">',
-        'after_title'   => '</span>'
+        'before_title'  => '<h2 class="widget-title footer-widget-title footer-one-widget-title">',
+        'after_title'   => '</h2>'
     ) );
 }
