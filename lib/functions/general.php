@@ -59,3 +59,11 @@ add_filter( 'widget_text', 'do_shortcode' );
     }
 }
 
+
+/**
+ * ACF: Add Theme Options Page
+ */
+
+ if (function_exists('acf_add_options_page')){
+    acf_add_options_page();
+  }
