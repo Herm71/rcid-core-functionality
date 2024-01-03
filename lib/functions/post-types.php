@@ -40,6 +40,7 @@ function bb_register_rotator_post_type() {
 		'publicly_queryable' => true,
 		'show_ui' => true,
 		'show_in_menu' => true,
+		'show_in_rest'       => true, // To use Gutenberg editor.
 		'query_var' => true,
 		'rewrite' => true,
 		'capability_type' => 'post',
@@ -51,7 +52,7 @@ function bb_register_rotator_post_type() {
 
 	register_post_type( 'rotator', $args );
 }
-add_action( 'init', 'bb_register_rotator_post_type' );
+// add_action( 'init', 'bb_register_rotator_post_type' );
 
 /**
  * Create Biz Directory post type
@@ -81,6 +82,7 @@ function bb_register_biz_directory_post_type() {
 		'publicly_queryable' => true,
 		'show_ui' => true,
 		'show_in_menu' => true,
+		'show_in_rest'       => true, // To use Gutenberg editor.
 		'query_var' => true,
 		'rewrite' => true,
 		'capability_type' => 'post',
@@ -92,7 +94,7 @@ function bb_register_biz_directory_post_type() {
 
 	register_post_type( 'business_directory', $args );
 }
-add_action( 'init', 'bb_register_biz_directory_post_type' );
+// add_action( 'init', 'bb_register_biz_directory_post_type' );
 
 /**
  * Create Portfolio post type
@@ -122,6 +124,7 @@ function bb_register_portfolio_post_type() {
 		'publicly_queryable' => true,
 		'show_ui' => true,
 		'show_in_menu' => true,
+		'show_in_rest'       => true, // To use Gutenberg editor.
 		'query_var' => true,
 		'rewrite' => true,
 		'capability_type' => 'post',
@@ -133,7 +136,7 @@ function bb_register_portfolio_post_type() {
 
 	register_post_type( 'portfolio', $args );
 }
-add_action( 'init', 'bb_register_portfolio_post_type' );
+// add_action( 'init', 'bb_register_portfolio_post_type' );
 
 /**
  * Create Projects post type
@@ -163,6 +166,7 @@ function bb_register_projects_post_type() {
 		'publicly_queryable' => true,
 		'show_ui' => true,
 		'show_in_menu' => true,
+		'show_in_rest'       => true, // To use Gutenberg editor.
 		'query_var' => true,
 		'rewrite' => true,
 		'capability_type' => 'post',
@@ -204,6 +208,7 @@ function bb_register_press_post_type() {
 		'publicly_queryable' => true,
 		'show_ui' => true,
 		'show_in_menu' => true,
+		'show_in_rest'       => true, // To use Gutenberg editor.
 		'query_var' => true,
 		'rewrite' => true,
 		'capability_type' => 'post',
@@ -245,6 +250,7 @@ function bb_register_team_member_post_type() {
 		'publicly_queryable' => true,
 		'show_ui' => true,
 		'show_in_menu' => true,
+		'show_in_rest'       => true, // To use Gutenberg editor.
 		'query_var' => true,
 		'rewrite' => true,
 		'capability_type' => 'post',
@@ -256,7 +262,7 @@ function bb_register_team_member_post_type() {
 
 	register_post_type( 'team_member', $args );
 }
-add_action( 'init', 'bb_register_team_member_post_type' );
+// add_action( 'init', 'bb_register_team_member_post_type' );
 
 /**
  * Create Testimonials post type
@@ -286,13 +292,14 @@ function bb_register_testimonials_post_type() {
 		'publicly_queryable' => true,
 		'show_ui' => true,
 		'show_in_menu' => true,
+		'show_in_rest'       => true, // To use Gutenberg editor.
 		'query_var' => true,
 		'rewrite' => true,
 		'capability_type' => 'post',
 		'has_archive' => true,
 		'hierarchical' => false,
 		'menu_position' => null,
-		'supports' => array('title', 'editor', 'comments', 'revisions', 'trackbacks', 'author', 'excerpt', 'page-attributes', 'thumbnail', 'custom-fields', 'post-formats')
+		'supports' => array( 'title', 'editor', 'comments', 'revisions', 'trackbacks', 'author', 'excerpt', 'page-attributes', 'thumbnail', 'custom-fields', 'post-formats')
 	);
 
 	register_post_type( 'testimonials', $args );

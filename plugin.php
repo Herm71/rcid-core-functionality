@@ -4,7 +4,7 @@
  * Plugin URI: https://github.com/Herm71/rcid-core-functionality.git
  * GitHub Plugin URI: https://github.com/Herm71/rcid-core-functionality
  * Description: Contains custom functionality. Theme independent.
- * Version: 0.0.1
+ * Version: 1.0.0
  * Author: Jason Chafin
  * Author URI: https://github.com/Herm71
  * License: GPL2
@@ -27,10 +27,10 @@ define( 'BB_DIR', dirname( __FILE__ ) );
 include_once( BB_DIR . '/lib/functions/post-types.php' );
 
 // Taxonomies
-//include_once( BB_DIR . '/lib/functions/taxonomies.php' );
+// include_once( BB_DIR . '/lib/functions/taxonomies.php' );
 
 // Shortcodes
-//include_once( BB_DIR . '/lib/widgets/shortcodes.php' );
+// include_once( BB_DIR . '/lib/widgets/shortcodes.php' );
 
 // Sidebars
 //include_once( BB_DIR . '/lib/widgets/sidebars.php' );
