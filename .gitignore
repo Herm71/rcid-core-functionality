@@ -161,7 +161,7 @@ pip-log.txt
 
 #Translations
 *.mo
-
+git
 #Mr Developer
 .mr.developer.cfg
 
@@ -171,3 +171,4 @@ pip-log.txt
 
 node_modules
 vendor
+*.zip
