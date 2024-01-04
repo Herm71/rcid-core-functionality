@@ -1,6 +1,6 @@
 {
 	"name": "rcid-core-functionality",
-	"version": "1.0.0",
+	"version": "1.1.0",
 	"description": "Core functionality plugin for RCID WordPress",
 	"main": "build/index.js",
 	"directories": {
