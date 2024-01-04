@@ -26,14 +26,17 @@ define( 'BB_DIR', dirname( __FILE__ ) );
 // Post Types
 include_once( BB_DIR . '/lib/functions/post-types.php' );
 
-// Taxonomies
-// include_once( BB_DIR . '/lib/functions/taxonomies.php' );
+// Google Tag Manager
+include_once( BB_DIR . '/lib/functions/gtm.php' );
 
 // Shortcodes
-// include_once( BB_DIR . '/lib/widgets/shortcodes.php' );
+// include_once( BB_DIR . '/lib/functions/shortcodes.php' );
 
-// Sidebars
-//include_once( BB_DIR . '/lib/widgets/sidebars.php' );
+// Disable XMLRP
+include_once( BB_DIR . '/lib/functions/disable-xmlrpc.php' );
+
+// Security Headers
+include_once( BB_DIR . '/lib/functions/security-headers.php' );
 
 // General
 include_once( BB_DIR . '/lib/functions/general.php' );

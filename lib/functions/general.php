@@ -4,9 +4,9 @@
  *
  * This file contains any general functions
  *
- * @package      BB_Custom_Functionality
+ * @package      RCID_Custom_Functionality
  * @since        1.0.0
- * @link         https://github.com/Herm71/blackbird-core-functionality-plugin.git
+ * @link         https://github.com/Herm71/rcid-core-functionality.git
  * @author       Jason Chafin
  * @copyright    Copyright (c) 2015, Blackbird Consulting
  * @license      http://opensource.org/licenses/gpl-2.0.php GNU Public License
@@ -26,7 +26,7 @@
  * @param string $url, request url
  * @return array request arguments
  */
-function bb_custom_functionality_hidden( $r, $url ) {
+function rcid_custom_functionality_hidden( $r, $url ) {
 	if ( 0 !== strpos( $url, 'http://api.wordpress.org/plugins/update-check' ) )
 		return $r; // Not a plugin update request. Bail immediately.
 	$plugins = unserialize( $r['body']['plugins'] );
@@ -35,7 +35,5 @@ function bb_custom_functionality_hidden( $r, $url ) {
 	$r['body']['plugins'] = serialize( $plugins );
 	return $r;
 }
-add_filter( 'http_request_args', 'bb_custom_functionality_hidden', 5, 2 );
+add_filter( 'http_request_args', 'rcid_custom_functionality_hidden', 5, 2 );
 
-// Use shortcodes in widgets
-add_filter( 'widget_text', 'do_shortcode' );
