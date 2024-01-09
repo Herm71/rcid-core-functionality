@@ -4,7 +4,7 @@
  * Plugin URI: https://github.com/Herm71/rcid-core-functionality.git
  * GitHub Plugin URI: https://github.com/Herm71/rcid-core-functionality
  * Description: Contains custom functionality. Theme independent.
- * Version: 1.1.0
+ * Version: 1.1.1
  * Author: Jason Chafin
  * Author URI: https://github.com/Herm71
  * License: GPL2
@@ -15,28 +15,40 @@
  *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without
  * even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
  */
 
 // Plugin Directory
-define( 'BB_DIR', dirname( __FILE__ ) );
+define('BB_DIR', dirname(__FILE__));
 
-//Include Customization files:
+// Include Customization files.
 
-// Post Types
-include_once( BB_DIR . '/lib/functions/post-types.php' );
+// Post Types.
+if (file_exists(BB_DIR . '/lib/functions/post-types.php') ) {
+    include_once BB_DIR . '/lib/functions/post-types.php';
+}
 
-// Google Tag Manager
-include_once( BB_DIR . '/lib/functions/gtm.php' );
+// Google Tag Manager.
+if (file_exists(BB_DIR . '/lib/functions/gtm.php') ) {
+    include_once BB_DIR . '/lib/functions/gtm.php';
+}
 
-// Shortcodes
-// include_once( BB_DIR . '/lib/functions/shortcodes.php' );
+// Shortcodes.
+// if ( file_exists( BB_DIR . '/lib/functions/shortcodes.php' ) ) {
+//     include_once BB_DIR . '/lib/functions/shortcodes.php';
+// }
 
-// Disable XMLRP
-include_once( BB_DIR . '/lib/functions/disable-xmlrpc.php' );
+// Disable XMLRP.
+if (file_exists(BB_DIR . '/lib/functions/disable-xmlrpc.php') ) {
+    include_once BB_DIR . '/lib/functions/disable-xmlrpc.php';
+}
 
-// Security Headers
-include_once( BB_DIR . '/lib/functions/security-headers.php' );
+// Security Headers.
+require_once BB_DIR . '/lib/functions/security-headers.php';
+if (file_exists(BB_DIR . '/lib/functions/security-headers.php') ) {
+    include_once BB_DIR . '/lib/functions/security-headers.php';
+}
 
-// General
-include_once( BB_DIR . '/lib/functions/general.php' );
+// General.
+if (file_exists(BB_DIR . '/lib/functions/general.php') ) {
+    include_once BB_DIR . '/lib/functions/general.php';
+}
