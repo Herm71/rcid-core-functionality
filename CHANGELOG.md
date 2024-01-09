@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.2](https://github.com/Herm71/rcid-core-functionality/compare/v1.1.1...v1.1.2) (2024-01-09)
+
+
+### Bug Fixes
+
+* :bug: releas.yml in wrong place. Fixed. ([9692ac6](https://github.com/Herm71/rcid-core-functionality/commit/9692ac64fecdb5f2d2992e491a6addba92438092))
+
 ### [1.1.1](https://github.com/Herm71/rcid-core-functionality/compare/v1.1.0...v1.1.1) (2024-01-09)
 
 
