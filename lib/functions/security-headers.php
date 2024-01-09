@@ -1,11 +1,16 @@
 <?php
-
 /**
  * Security Headers
-
+ *
  * This file contains the functions necessary to add security headers to the site.
-
  * see: https://pantheon.io/docs/wordpress-best-practices#security-headers
+ *
+ * @package   Core_Functionality
+ * @since     1.1.0
+ * @link      https://github.com/Herm71/rcid-core-functionality.git
+ * @author    Jason Chafin
+ * @copyright Copyright (c) 2011, Jason Chafin
+ * @license   http://opensource.org/licenses/gpl-2.0.php GNU Public License
  */
 function rcid_additional_securityheaders( $headers )
 {

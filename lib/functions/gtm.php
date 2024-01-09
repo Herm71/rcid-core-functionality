@@ -1,9 +1,15 @@
 <?php
-
 /**
  * Google Tag Manager
-
+ *
  * This file contains the functions necessary to add the RCID Google Analytics and Tag Manager snippets to the site.
+ *
+ * @package   Core_Functionality
+ * @since     1.1.0
+ * @link      https://github.com/Herm71/rcid-core-functionality.git
+ * @author    Jason Chafin
+ * @copyright Copyright (c) 2011, Jason Chafin
+ * @license   http://opensource.org/licenses/gpl-2.0.php GNU Public License
  */
 
 add_action('wp_body_open', 'rcid_google_tag_manager');
