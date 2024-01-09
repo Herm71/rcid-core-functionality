@@ -20,22 +20,35 @@
 // Plugin Directory
 define('BB_DIR', dirname(__FILE__));
 
-//Include Customization files:
+// Include Customization files.
 
-// Post Types
-require_once BB_DIR . '/lib/functions/post-types.php';
+// Post Types.
+if ( file_exists( BB_DIR . '/lib/functions/post-types.php' ) ) {
+	include_once BB_DIR . '/lib/functions/post-types.php';
+}
 
-// Google Tag Manager
-require_once BB_DIR . '/lib/functions/gtm.php';
+// Google Tag Manager.
+if ( file_exists( BB_DIR . '/lib/functions/gtm.php' ) ) {
+	include_once BB_DIR . '/lib/functions/gtm.php';
+}
 
-// Shortcodes
-// include_once( BB_DIR . '/lib/functions/shortcodes.php' );
+// Shortcodes.
+// if ( file_exists( BB_DIR . '/lib/functions/shortcodes.php' ) ) {
+// 	include_once BB_DIR . '/lib/functions/shortcodes.php';
+// }
 
-// Disable XMLRP
-require_once BB_DIR . '/lib/functions/disable-xmlrpc.php';
+// Disable XMLRP.
+if ( file_exists( BB_DIR . '/lib/functions/disable-xmlrpc.php' ) ) {
+	include_once BB_DIR . '/lib/functions/disable-xmlrpc.php';
+}
 
-// Security Headers
+// Security Headers.
 require_once BB_DIR . '/lib/functions/security-headers.php';
+if ( file_exists( BB_DIR . '/lib/functions/security-headers.php' ) ) {
+	include_once BB_DIR . '/lib/functions/security-headers.php';
+}
 
-// General
-require_once BB_DIR . '/lib/functions/general.php';
+// General.
+if ( file_exists( BB_DIR . '/lib/functions/general.php' ) ) {
+	include_once BB_DIR . '/lib/functions/general.php';
+}
