@@ -15,28 +15,27 @@
  *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without
  * even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
  */
 
 // Plugin Directory
-define( 'BB_DIR', dirname( __FILE__ ) );
+define('BB_DIR', dirname(__FILE__));
 
 //Include Customization files:
 
 // Post Types
-include_once( BB_DIR . '/lib/functions/post-types.php' );
+require_once BB_DIR . '/lib/functions/post-types.php';
 
 // Google Tag Manager
-include_once( BB_DIR . '/lib/functions/gtm.php' );
+require_once BB_DIR . '/lib/functions/gtm.php';
 
 // Shortcodes
 // include_once( BB_DIR . '/lib/functions/shortcodes.php' );
 
 // Disable XMLRP
-include_once( BB_DIR . '/lib/functions/disable-xmlrpc.php' );
+require_once BB_DIR . '/lib/functions/disable-xmlrpc.php';
 
 // Security Headers
-include_once( BB_DIR . '/lib/functions/security-headers.php' );
+require_once BB_DIR . '/lib/functions/security-headers.php';
 
 // General
-include_once( BB_DIR . '/lib/functions/general.php' );
+require_once BB_DIR . '/lib/functions/general.php';

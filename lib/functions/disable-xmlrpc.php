@@ -9,9 +9,9 @@
  */
 
 add_filter(
-	'xmlrpc_methods',
-	function () {
-		return array();
-	},
-	PHP_INT_MAX
+    'xmlrpc_methods',
+    function () {
+        return array();
+    },
+    PHP_INT_MAX
 );
