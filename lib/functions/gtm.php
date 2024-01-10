@@ -13,24 +13,7 @@
  */
 
 add_action('wp_head', 'rcid_google_tag_manager_head' );
-add_action('wp_body_open', 'rcid_google_analytics' );
 add_action('wp_body_open', 'rcid_google_tag_manager_body' );
-
-
-function rcid_google_analytics()
-{
-    ?>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-BLMEKZLMMC"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'G-BLMEKZLMMC');
-    </script>
-    <?php
-}
 
 function rcid_google_tag_manager_head()
 {
