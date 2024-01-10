@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.4](https://github.com/Herm71/rcid-core-functionality/compare/v1.1.3...v1.1.4) (2024-01-10)
+
+
+### Bug Fixes
+
+* :memo: Rewrite `README.md` and include badges from Shields.io ([03ead3b](https://github.com/Herm71/rcid-core-functionality/commit/03ead3bb222154a5eff102aa5b36f18efd755d59))
+
 ### [1.1.3](https://github.com/Herm71/rcid-core-functionality/compare/v1.1.2...v1.1.3) (2024-01-10)
 
 
