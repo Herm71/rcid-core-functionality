@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.2.0](https://github.com/Herm71/rcid-core-functionality/compare/v1.1.4...v1.2.0) (2024-01-10)
+
+
+### Features
+
+* :sparkles: Add Google Tag Manager in addition to Google Analytics ([84a86b6](https://github.com/Herm71/rcid-core-functionality/commit/84a86b69a4316ec9b923be086e88299e0dc86326))
+
 ### [1.1.4](https://github.com/Herm71/rcid-core-functionality/compare/v1.1.3...v1.1.4) (2024-01-10)
 
 
