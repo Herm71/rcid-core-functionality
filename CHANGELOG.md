@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.3](https://github.com/Herm71/rcid-core-functionality/compare/v1.1.2...v1.1.3) (2024-01-10)
+
+
+### Bug Fixes
+
+* :bug: Fix another CSP issue ([9c9664a](https://github.com/Herm71/rcid-core-functionality/commit/9c9664a1108264757b53ff0021655d5663afc414))
+
 ### [1.1.2](https://github.com/Herm71/rcid-core-functionality/compare/v1.1.1...v1.1.2) (2024-01-09)
 
 
