@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.2.1](https://github.com/Herm71/rcid-core-functionality/compare/v1.2.0...v1.2.1) (2024-01-10)
+
+
+### Bug Fixes
+
+* :fire: Remove Google Analytics tag script. It is replaced by the Google Tag Manager scripts ([9a1549b](https://github.com/Herm71/rcid-core-functionality/commit/9a1549b67cc796cea3008b13ba7c85bbffedc33a))
+
 ## [1.2.0](https://github.com/Herm71/rcid-core-functionality/compare/v1.1.4...v1.2.0) (2024-01-10)
 
 
