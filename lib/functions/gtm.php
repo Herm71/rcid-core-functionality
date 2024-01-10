@@ -12,8 +12,8 @@
  * @license   http://opensource.org/licenses/gpl-2.0.php GNU Public License
  */
 
-add_action('wp_head', 'rcid_google_tag_manager_head' );
-add_action('wp_body_open', 'rcid_google_tag_manager_body' );
+add_action('wp_head', 'rcid_google_tag_manager_head', -1 );
+add_action('wp_body_open', 'rcid_google_tag_manager_body', -1 );
 
 function rcid_google_tag_manager_head()
 {
