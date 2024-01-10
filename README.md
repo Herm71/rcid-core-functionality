@@ -1,15 +1,21 @@
-# Core Functionality Plugin
+# Ruth Chafin Interior Design WordPress Core Functionality Plugin
 
-![GitHub Release](https://img.shields.io/github/v/release/Herm71/rcid-core-functionality?display_name=release&logo=github&labelColor=green&color=violet)
+![GitHub Release](https://img.shields.io/github/v/release/Herm71/rcid-core-functionality?display_name=release&logo=github&labelColor=%23362422&color=%23B95B09) ![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/Herm71/rcid-core-functionality/release.yml?style=flat&logo=github&labelColor=%23362422&color=%23B95B09) ![GitHub issues](https://img.shields.io/github/issues/Herm71/rcid-core-functionality?logo=github&labelColor=%23362422&color=%23B95B09)
 
-This is a basic WordPress developer plugin that can contain your site's core functionality. The concept is to keep structural features of a site that are theme independent, such as custom post-types, taxonomies and short-codes out of the theme's code. This will ensure that a future theme change does not affect a site's core functionality.
+This is WordPress plugin contains custom functionality for the [Ruth Chafin Interior Design](https://ruthchafininteriordesign.com) [WordPress Block Theme](https://github.com/Herm71/rcid-block-theme). The concept is to keep features of a site that are theme independent, such as custom post-types, taxonomies, and roles separate from the UCSC theme code. This will ensure that future theme changes do not affect a site's functionality.
 
-This is boilerplate code. A few includes and a few examples. It can be modified as necessary.
+## Features
 
-* `general.php` -- for any general functions you would write
+This plugin can be expanded as use-cases arise. It currently features the following:
+
+* `disable-xmlrpc.php` -- disables `xml-rpc` and removes from `<head>` to prevent brute force attacks on admin usernames and passwords per [WordPress best practices](https://pantheon.io/docs/wordpress-best-practices#avoid-xml-rpc-attacks).
+
+* `general.php` -- for any general general theme-independent functions
+
+* `gtm.php` -- adds Google Tag Manager and Analytics
 
 * `post-types.php` -- for registering custom post types
 
-* `shortcodes.php` -- for writing custom shortcodes
+* `security-headers.php` -- adds security headers such as Content Security Policy
 
-* `taxonomies.php` -- for custom taxonomies
+* `shortcodes.php` -- for custom custom shortcodes

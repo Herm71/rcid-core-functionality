@@ -15,3 +15,6 @@ add_filter(
     },
     PHP_INT_MAX
 );
+
+// Remove link from <head>.
+remove_action( 'wp_head', 'rsd_link' );
