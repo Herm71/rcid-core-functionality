@@ -4,7 +4,7 @@
  * Plugin URI: https://github.com/Herm71/rcid-core-functionality.git
  * GitHub Plugin URI: https://github.com/Herm71/rcid-core-functionality
  * Description: Contains custom functionality. Theme independent.
- * Version: 1.1.2
+ * Version: 1.1.3
  * Author: Jason Chafin
  * Author URI: https://github.com/Herm71
  * License: GPL2
