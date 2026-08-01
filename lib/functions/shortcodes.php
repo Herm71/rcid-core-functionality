@@ -13,26 +13,22 @@
  */
 
 // Block direct access.
-if (! defined('ABSPATH') ) {
-    exit;
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
 }
 
 /**
- * Show Current Year
+ * Show the current year.
  *
- * @return void
- * Description
- * @package
- * @since
- * @author Jason Chafin
- * @link http://www.blackbirdconsult.com
- * @license GNU General Public License 2.0+
+ * Uses wp_date() rather than date() so the year rolls over according to the
+ * site's configured timezone rather than the server's.
+ *
+ * @since 1.0.0
+ *
+ * @return string The current four-digit year.
  */
-
-function rcid_show_current_year(){
-
-	return date('Y');
-
+function rcid_show_current_year() {
+	return wp_date( 'Y' );
 }
 
-add_shortcode('show-current-year', 'rcid_show_current_year');
+add_shortcode( 'show-current-year', 'rcid_show_current_year' );

@@ -18,15 +18,17 @@
  *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without
  * even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *
+ * @package RCID_Custom_Functionality
  */
 
 // Block direct access.
-if (! defined('ABSPATH') ) {
-    exit;
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
 }
 
-// Plugin Directory
-define('BB_DIR', dirname(__FILE__));
+// Plugin directory.
+define( 'BB_DIR', __DIR__ );
 
 /**
  * Plugin updates via GitHub releases.
@@ -43,58 +45,62 @@ define('BB_DIR', dirname(__FILE__));
  * @see https://github.com/YahnisElsts/plugin-update-checker
  */
 $rcid_update_checker_path = BB_DIR
-    . '/vendor/yahnis-elsts/plugin-update-checker/plugin-update-checker.php';
+	. '/vendor/yahnis-elsts/plugin-update-checker/plugin-update-checker.php';
 
-if (( is_admin() || wp_doing_cron() || ( defined('WP_CLI') && WP_CLI ) )
-    && file_exists($rcid_update_checker_path)
+if ( ( is_admin() || wp_doing_cron() || ( defined( 'WP_CLI' ) && WP_CLI ) )
+	&& file_exists( $rcid_update_checker_path )
 ) {
-    include_once $rcid_update_checker_path;
+	include_once $rcid_update_checker_path;
 
-    $rcid_update_checker = YahnisElsts\PluginUpdateChecker\v5\PucFactory::buildUpdateChecker(
-        'https://github.com/Herm71/rcid-core-functionality/',
-        __FILE__,
-        'rcid-core-functionality'
-    );
+	$rcid_update_checker = YahnisElsts\PluginUpdateChecker\v5\PucFactory::buildUpdateChecker(
+		'https://github.com/Herm71/rcid-core-functionality/',
+		__FILE__,
+		'rcid-core-functionality'
+	);
 
-    // Install the release asset (rcid-core-functionality.zip) and nothing else.
-    // The default preference silently falls back to GitHub's source tarball,
-    // which ships without vendor/ — installing that would leave the site with a
-    // copy of this plugin that can no longer update itself.
-    $rcid_vcs_api = $rcid_update_checker->getVcsApi();
-    $rcid_vcs_api->enableReleaseAssets(
-        '/rcid-core-functionality\.zip/',
-        $rcid_vcs_api::REQUIRE_RELEASE_ASSETS
-    );
+	// Install the release asset (rcid-core-functionality.zip) and nothing else.
+	// The default preference silently falls back to GitHub's source tarball,
+	// which ships without vendor/ — installing that would leave the site with a
+	// copy of this plugin that can no longer update itself.
+	$rcid_vcs_api = $rcid_update_checker->getVcsApi();
+	$rcid_vcs_api->enableReleaseAssets(
+		'/rcid-core-functionality\.zip/',
+		$rcid_vcs_api::REQUIRE_RELEASE_ASSETS
+	);
 }
 
 // Include Customization files.
 
 // Post Types.
-if (file_exists(BB_DIR . '/lib/functions/post-types.php') ) {
-    include_once BB_DIR . '/lib/functions/post-types.php';
+if ( file_exists( BB_DIR . '/lib/functions/post-types.php' ) ) {
+	include_once BB_DIR . '/lib/functions/post-types.php';
 }
 
 // Google Tag Manager.
-if (file_exists(BB_DIR . '/lib/functions/gtm.php') ) {
-    include_once BB_DIR . '/lib/functions/gtm.php';
+if ( file_exists( BB_DIR . '/lib/functions/gtm.php' ) ) {
+	include_once BB_DIR . '/lib/functions/gtm.php';
 }
 
-// Shortcodes.
+// Shortcodes. Commenting an include out is the intended enable/disable
+// mechanism here, so this block is deliberately dead code — see #6 for the
+// decision on whether to re-enable it.
+// phpcs:disable Squiz.Commenting.InlineComment.InvalidEndChar
 // if ( file_exists( BB_DIR . '/lib/functions/shortcodes.php' ) ) {
-//     include_once BB_DIR . '/lib/functions/shortcodes.php';
+// include_once BB_DIR . '/lib/functions/shortcodes.php';
 // }
+// phpcs:enable Squiz.Commenting.InlineComment.InvalidEndChar
 
 // Disable XMLRP.
-if (file_exists(BB_DIR . '/lib/functions/disable-xmlrpc.php') ) {
-    include_once BB_DIR . '/lib/functions/disable-xmlrpc.php';
+if ( file_exists( BB_DIR . '/lib/functions/disable-xmlrpc.php' ) ) {
+	include_once BB_DIR . '/lib/functions/disable-xmlrpc.php';
 }
 
 // Security Headers.
-if (file_exists(BB_DIR . '/lib/functions/security-headers.php') ) {
-    include_once BB_DIR . '/lib/functions/security-headers.php';
+if ( file_exists( BB_DIR . '/lib/functions/security-headers.php' ) ) {
+	include_once BB_DIR . '/lib/functions/security-headers.php';
 }
 
 // General.
-if (file_exists(BB_DIR . '/lib/functions/general.php') ) {
-    include_once BB_DIR . '/lib/functions/general.php';
+if ( file_exists( BB_DIR . '/lib/functions/general.php' ) ) {
+	include_once BB_DIR . '/lib/functions/general.php';
 }

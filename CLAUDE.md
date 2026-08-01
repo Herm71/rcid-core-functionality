@@ -21,19 +21,21 @@ composer install
 
 | Task | Command |
 |---|---|
-| PHP lint | `composer lint` (phpcs) |
-| PHP lint autofix | `composer lint-fix` (phpcbf, all `.php` recursively) |
+| PHP lint | `composer lint` (phpcs, reads [phpcs.xml](phpcs.xml)) |
+| PHP lint autofix | `composer lint-fix` (phpcbf) |
 | JS/CSS lint | `npm run lint:js`, `npm run lint:style` |
 | Format | `npm run format` |
+| Lint staged files | `npm test` (lint-staged) |
 | Package a zip | `npm run zip` |
 | Cut a release | `npm run release` (commit-and-tag-version) |
 
+**PHP style is WordPress Coding Standards**, selected by [phpcs.xml](phpcs.xml) — tabs, same-line braces, `if ( ! is_admin() ) {` spacing, Yoda conditions. Match the surrounding files; `composer lint-fix` will do most of it for you. The ruleset carries a `<file>.</file>` element because `composer lint` passes no path of its own and would otherwise exit 3 without checking anything.
+
 Caveats worth knowing before you run these:
 
-- **No `phpcs.xml` ruleset exists.** `composer lint` therefore falls back to PHPCS's default (PEAR) standard, even though `wp-coding-standards/wpcs` is the declared dev dependency. This is why existing PHP uses 4-space indent, `function foo()` with the brace on the next line, and `if (! is_admin() ) {` spacing — PEAR style, not WordPress style. Match the surrounding files rather than WPCS conventions unless you're also adding a ruleset.
-- **`.editorconfig` says tabs**, which contradicts the actual PHP formatting above. Tabs do apply to JSON/JS/config files.
-- **`npm test` runs `lint-staged`, which has no configuration** in `package.json` or a `.lintstagedrc`. There is no test suite. Don't report "tests pass" from this command.
-- **`npm run build` / `npm run zip` invoke `wp-scripts build`** against a nonexistent `src/` entry point. Only the `plugin-zip` half is meaningful today; the build is vestigial (inherited from a block-theme scaffold).
+- **`npm test` is a real gate now**, but only when invoked. It runs `phpcs` over staged `.php` and `wp-scripts format` over staged JS/JSON/YAML/MD. There is no git hook wired up, so it does *not* fire automatically on commit — add husky if you want that. There is still no test suite, so "tests pass" remains the wrong phrase for a green run.
+- **`.editorconfig` declares tabs**, which now agrees with the PHP formatting rather than contradicting it.
+- **`wp-scripts build` is gone.** It targeted a `src/` entry point that has never existed here (inherited from a block-theme scaffold); `npm run zip` is now just `wp-scripts plugin-zip`, and the release workflow no longer runs a build step. `start`, `start:hot` and `format:src` were removed for the same reason.
 
 ## Release process
 
