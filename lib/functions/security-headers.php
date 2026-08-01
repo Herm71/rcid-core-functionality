@@ -12,6 +12,24 @@
  * @copyright Copyright (c) 2011, Jason Chafin
  * @license   http://opensource.org/licenses/gpl-2.0.php GNU Public License
  */
+
+// Block direct access.
+if (! defined('ABSPATH') ) {
+    exit;
+}
+
+/**
+ * Add Security Headers
+ *
+ * Filters the headers WordPress sends on front-end requests. Skipped in the
+ * admin so the editor is not constrained by the site's CSP.
+ *
+ * @since 1.1.0
+ * @link  https://pantheon.io/docs/wordpress-best-practices#security-headers
+ *
+ * @param  array $headers Headers WordPress is about to send.
+ * @return array Filtered headers.
+ */
 function rcid_additional_securityheaders( $headers )
 {
     if (! is_admin() ) {
