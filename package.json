@@ -37,7 +37,7 @@
 	"homepage": "https://github.com/Herm71/rcid-core-functionality#readme",
 	"devDependencies": {
 		"@wordpress/prettier-config": "^3.5.0",
-		"@wordpress/scripts": "^26.19.0",
+		"@wordpress/scripts": "^34.0.0",
 		"commit-and-tag-version": "^13.1.2",
 		"lint-staged": "^15.2.0",
 		"prettier": "^3.1.1"
@@ -45,7 +45,10 @@
 	"files": [
 		"lib",
 		"vendor",
-		"*.php"
+		"*.php",
+		"README.md",
+		"LICENSE",
+		"CHANGELOG.md"
 	],
 	"commit-and-tag-version": {
 		"bumpFiles": [
