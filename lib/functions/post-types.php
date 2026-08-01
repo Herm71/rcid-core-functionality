@@ -57,7 +57,6 @@ function rcid_register_projects_post_type() {
 
 	register_post_type( 'projects', $args );
 }
-add_action( 'init', 'rcid_register_projects_post_type' );
 
 /**
  * Create Press post type
@@ -99,7 +98,6 @@ function rcid_register_press_post_type() {
 
 	register_post_type( 'press', $args );
 }
-add_action( 'init', 'rcid_register_press_post_type' );
 
 /**
  * Create Team Member post type
@@ -186,4 +184,57 @@ function rcid_register_testimonials_post_type() {
 
 	register_post_type( 'testimonials', $args );
 }
-add_action( 'init', 'rcid_register_testimonials_post_type' );
+
+/**
+ * Slugs of every post type this plugin registers.
+ *
+ * Single source of truth so the registration, unregistration and activation
+ * paths cannot drift apart. team_member is deliberately absent: it is defined
+ * above but never registered.
+ *
+ * @since 1.4.0
+ *
+ * @return string[] Post type slugs.
+ */
+function rcid_post_type_slugs() {
+	return array( 'projects', 'press', 'testimonials' );
+}
+
+/**
+ * Register every post type this plugin provides.
+ *
+ * Hooked to init, and called directly by the activation hook in plugin.php.
+ * Both paths must register the same post types: the activation hook flushes
+ * rewrite rules, and rules generated before a post type is registered will not
+ * contain its archive.
+ *
+ * @since 1.4.0
+ *
+ * @return void
+ */
+function rcid_register_post_types() {
+	rcid_register_projects_post_type();
+	rcid_register_press_post_type();
+	rcid_register_testimonials_post_type();
+}
+add_action( 'init', 'rcid_register_post_types' );
+
+/**
+ * Unregister every post type this plugin provides.
+ *
+ * Called on deactivation before flushing, so the archive rewrite rules are
+ * dropped rather than regenerated — at deactivation the plugin is still loaded
+ * and its post types are still registered, so flushing alone would write them
+ * straight back.
+ *
+ * @since 1.4.0
+ *
+ * @return void
+ */
+function rcid_unregister_post_types() {
+	foreach ( rcid_post_type_slugs() as $post_type ) {
+		if ( post_type_exists( $post_type ) ) {
+			unregister_post_type( $post_type );
+		}
+	}
+}

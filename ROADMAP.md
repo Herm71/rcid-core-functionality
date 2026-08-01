@@ -69,16 +69,22 @@ Landed on the `uninstall` branch (see #10), closing section 3:
       plugin does not always deactivate it first, and `uninstall.php` runs without the plugin
       loaded, so the names are hard-coded and tied to the slug in `buildUpdateChecker()`.
 
+Landed on the `activation` branch (see #9), closing section 2:
+
+- [x] Nothing called `flush_rewrite_rules()`, so the `projects`, `press` and `testimonials`
+      archives 404ed after a fresh activation until Permalinks were re-saved by hand.
+      `register_activation_hook()` now registers the post types and *then* flushes — that order
+      matters, because a flush writes rules for whatever is registered at that instant and `init`
+      has not run yet during activation. Deactivation unregisters first and then flushes, for the
+      mirror-image reason: the plugin is still loaded at that point, so flushing alone would write
+      the archive rules straight back.
+- [x] The three `add_action( 'init', ... )` calls were replaced by one aggregator,
+      `rcid_register_post_types()`, shared by `init` and the activation hook, so the two paths
+      cannot drift and leave a new CPT's archive unroutable.
+
 ## 1. Defuse the dead update filter — done, see the Done section
 
-## 2. Add activation lifecycle and flush rewrite rules
-
-`projects`, `press`, and `testimonials` all register with `has_archive => true`, but the repo
-contains no `register_activation_hook`, `register_deactivation_hook`, or `flush_rewrite_rules`
-anywhere. Their archives 404 after a fresh activation until someone re-saves Permalinks.
-
-Per the lifecycle guardrails, register the hook at top level in `plugin.php`, call the same CPT
-registration function used on `init`, *then* flush — and flush again on deactivation.
+## 2. Add activation lifecycle and flush rewrite rules — done, see the Done section
 
 ## 3. Decide and document an uninstall policy — done, see the Done section
 
