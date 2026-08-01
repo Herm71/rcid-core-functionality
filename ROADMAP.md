@@ -26,6 +26,15 @@ Landed on the `updater` branch:
       maintained fork `commit-and-tag-version`, and a `bumpFiles` entry now rewrites the plugin
       header through `wp-plugin-version-updater.js`, so the two cannot drift.
 
+Landed on the `plugin-metadata` branch (see #12), closing section 5:
+
+- [x] The plugin header declared `License: GPL2` while `package.json` declared `ISC`. Settled on
+      `GPL-2.0-or-later` in both, with a `License URI` header and the GPL-2.0 text in `LICENSE`.
+      Note this relicenses from GPL-2.0-**only**: the header docblock previously said "you may NOT
+      assume that you can use any other version of the GPL", and now carries the standard
+      "either version 2 ... or (at your option) any later version" wording.
+- [x] `Text Domain`, `Requires at least` (6.0) and `Requires PHP` (8.0) headers were missing.
+
 ## 1. Defuse the dead update filter in `lib/functions/general.php`
 
 `rcid_custom_functionality_hidden()` has four compounding faults and currently does nothing:
@@ -81,11 +90,7 @@ outlives the theme — but the decision should be explicit rather than incidenta
   scaffolding). Only the `plugin-zip` half of `npm run zip` is meaningful. The release workflow
   runs `npm run build` on every tag, so this is dead weight in CI too.
 
-## 5. Correct plugin metadata
-
-- The header declares `License: GPL2` while `package.json` declares `ISC`. Pick one.
-- Missing `Text Domain`, `Requires at least`, and `Requires PHP` headers. `Requires PHP` matters
-  here given the PHP 8 hazard described in item 1.
+## 5. Correct plugin metadata — done, see the Done section
 
 ## 6. Shortcodes: decide whether to re-enable
 
