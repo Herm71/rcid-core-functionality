@@ -8,6 +8,8 @@ A WordPress "core functionality" plugin for [Ruth Chafin Interior Design](https:
 
 There is no build step for the PHP that ships — this is plain procedural PHP with `add_action`/`add_filter` calls at file scope. No classes, no autoloader, no `src/` directory.
 
+The site is hosted on GreenGeeks. It was previously on Pantheon, and a few Pantheon-era artifacts survive in the code (documentation links, one CSP allowlist entry) — those are noted where they appear below.
+
 ## Commands
 
 Dependencies are not committed (`node_modules` and `vendor` are gitignored), so install first:
@@ -50,9 +52,9 @@ Function names are prefixed `rcid_` to avoid collisions in the global namespace.
 Per-file responsibilities:
 
 - **[post-types.php](lib/functions/post-types.php)** — registers `projects`, `press`, and `testimonials` CPTs on `init`, all with `show_in_rest => true` (required for the block editor, and for the block theme to query them). A fourth, `team_member`, is defined but its `add_action('init', ...)` is commented out; leave that intact unless asked to enable it.
-- **[security-headers.php](lib/functions/security-headers.php)** — a single `wp_headers` filter setting CSP, `X-Frame-Options`, `Permissions-Policy`, etc., skipped when `is_admin()`. The CSP allowlist is a long inline string and is the most fragile thing in this repo: several past releases were CSP hotfixes after a third-party script got blocked. Any new external script, font, or iframe source must be added to the matching directive here or it will silently fail on the live site.
+- **[security-headers.php](lib/functions/security-headers.php)** — a single `wp_headers` filter setting CSP, `X-Frame-Options`, `Permissions-Policy`, etc., skipped when `is_admin()`. The CSP allowlist is a long inline string and is the most fragile thing in this repo: several past releases were CSP hotfixes after a third-party script got blocked. Any new external script, font, or iframe source must be added to the matching directive here or it will silently fail on the live site. `default-src` still allowlists `*.pantheonsite.io`, left over from the old host; it is inert on GreenGeeks but has not been removed, in case any legacy asset URL still resolves through it.
 - **[gtm.php](lib/functions/gtm.php)** — Google Tag Manager (container `GTM-5K5NV59S`) injected via `wp_head` and `wp_body_open`, both at priority `-1` so the snippet lands as high in the document as possible. That priority is intentional (v1.2.2); don't "clean it up" to the default. GA is intentionally *not* here — it was removed in v1.2.1 in favor of GTM.
-- **[disable-xmlrpc.php](lib/functions/disable-xmlrpc.php)** — empties `xmlrpc_methods` at `PHP_INT_MAX` and removes `rsd_link`, per Pantheon's brute-force guidance. The site is Pantheon-hosted, which is also why Pantheon best-practice docs are cited throughout.
+- **[disable-xmlrpc.php](lib/functions/disable-xmlrpc.php)** — empties `xmlrpc_methods` at `PHP_INT_MAX` and removes `rsd_link` to blunt brute-force attacks against admin credentials. The advice is host-independent; the `pantheon.io` links cited here and in [README.md](README.md) are historical, from when the site was on Pantheon.
 - **[general.php](lib/functions/general.php)** — currently just the Mark Jaquith `http_request_args` trick that hides this plugin from wordpress.org update checks (a public plugin sharing the slug would otherwise clobber it). Catch-all for theme-independent odds and ends.
 
 The plugin updates itself from its own GitHub releases, not from the WordPress.org repository. [plugin.php](plugin.php) bootstraps [Yahnis Elsts' plugin-update-checker](https://github.com/YahnisElsts/plugin-update-checker) (a Composer runtime dependency, so `vendor/` must be in the packaged zip — see the release workflow's `composer install --no-dev` step). Things to keep in mind when touching that block:
