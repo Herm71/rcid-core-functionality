@@ -104,3 +104,53 @@ if ( file_exists( BB_DIR . '/lib/functions/security-headers.php' ) ) {
 if ( file_exists( BB_DIR . '/lib/functions/general.php' ) ) {
 	include_once BB_DIR . '/lib/functions/general.php';
 }
+
+/**
+ * Register the post types, then flush rewrite rules.
+ *
+ * All three post types use has_archive => true, so each needs its own rewrite
+ * rules. Without a flush at activation those rules never get written and the
+ * archives 404 until someone re-saves Permalinks by hand.
+ *
+ * Registration has to happen *before* the flush: flush_rewrite_rules() writes
+ * out the rules for whatever is registered at that moment, and on activation
+ * `init` has not run yet.
+ *
+ * Note for multisite: register_activation_hook() fires once per network
+ * activation, not once per site, so sites in a network would still need their
+ * permalinks re-saved. This plugin runs on a single-site install.
+ *
+ * @since 1.4.0
+ *
+ * @return void
+ */
+function rcid_activate() {
+	// Guarded because post-types.php is included conditionally above; a missing
+	// file should not turn activation into a fatal.
+	if ( function_exists( 'rcid_register_post_types' ) ) {
+		rcid_register_post_types();
+	}
+
+	flush_rewrite_rules();
+}
+register_activation_hook( __FILE__, 'rcid_activate' );
+
+/**
+ * Unregister the post types, then flush rewrite rules.
+ *
+ * The plugin is still loaded when this runs and its post types are still
+ * registered, so flushing on its own would write the archive rules straight
+ * back. Unregistering first is what actually drops them.
+ *
+ * @since 1.4.0
+ *
+ * @return void
+ */
+function rcid_deactivate() {
+	if ( function_exists( 'rcid_unregister_post_types' ) ) {
+		rcid_unregister_post_types();
+	}
+
+	flush_rewrite_rules();
+}
+register_deactivation_hook( __FILE__, 'rcid_deactivate' );
