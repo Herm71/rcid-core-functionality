@@ -2,6 +2,32 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [1.3.0](https://github.com/Herm71/rcid-core-functionality/compare/v1.2.2...v1.3.0) (2026-08-01)
+
+### ⚠ Upgrade notes
+
+* **Install this version manually.** 1.2.2 shipped without an update checker, so it cannot discover
+  this release on its own. From 1.3.0 onward updates surface automatically.
+* **New minimum requirements:** WordPress 6.0 and PHP 8.0.
+* Licensing moves from GPL-2.0-only to **GPL-2.0-or-later**.
+
+### Features
+
+* :arrows_counterclockwise: Update the plugin from its own GitHub releases via
+  [plugin-update-checker](https://github.com/YahnisElsts/plugin-update-checker), registered for the
+  dashboard, WP-Cron and WP-CLI ([#17](https://github.com/Herm71/rcid-core-functionality/pull/17))
+  ([18ef6ff](https://github.com/Herm71/rcid-core-functionality/commit/18ef6ff))
+* :package: Package the plugin inside a root folder, so the zip matches the standard WordPress
+  plugin layout ([#17](https://github.com/Herm71/rcid-core-functionality/pull/17))
+* :wrench: Replace the unmaintained `standard-version` with `commit-and-tag-version`, and bump the
+  `Version:` header in `plugin.php` automatically so it can no longer drift from `package.json`
+  ([#17](https://github.com/Herm71/rcid-core-functionality/pull/17))
+
+### Bug Fixes
+
+* :fire: Delete the dead wordpress.org update filter ([#19](https://github.com/Herm71/rcid-core-functionality/issues/19)) ([d44f008](https://github.com/Herm71/rcid-core-functionality/commit/d44f0085702f87e1a376b9195dcc511f5b7480db)), closes [#8](https://github.com/Herm71/rcid-core-functionality/issues/8)
+* :lock: Guard direct file access and repair shortcodes open tag ([09350be](https://github.com/Herm71/rcid-core-functionality/commit/09350be9eff4cf770f05d57897d0261218af91f5))
+* :page_facing_up: Correct plugin metadata headers and settle the license ([#18](https://github.com/Herm71/rcid-core-functionality/issues/18)) ([2a392e3](https://github.com/Herm71/rcid-core-functionality/commit/2a392e38eef52e471da267bba8952396c8f12b01)), closes [#12](https://github.com/Herm71/rcid-core-functionality/issues/12), references [#8](https://github.com/Herm71/rcid-core-functionality/issues/8)
 ### [1.2.2](https://github.com/Herm71/rcid-core-functionality/compare/v1.2.1...v1.2.2) (2024-01-10)
 
 
