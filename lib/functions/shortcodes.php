@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Custom Shortcodes
  *
@@ -11,6 +11,11 @@
  * @copyright Copyright (c) 2011, Jason Chafin
  * @license   http://opensource.org/licenses/gpl-2.0.php GNU Public License
  */
+
+// Block direct access.
+if (! defined('ABSPATH') ) {
+    exit;
+}
 
 /**
  * Show Current Year

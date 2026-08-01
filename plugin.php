@@ -17,6 +17,11 @@
  * even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
+// Block direct access.
+if (! defined('ABSPATH') ) {
+    exit;
+}
+
 // Plugin Directory
 define('BB_DIR', dirname(__FILE__));
 
@@ -43,7 +48,6 @@ if (file_exists(BB_DIR . '/lib/functions/disable-xmlrpc.php') ) {
 }
 
 // Security Headers.
-require_once BB_DIR . '/lib/functions/security-headers.php';
 if (file_exists(BB_DIR . '/lib/functions/security-headers.php') ) {
     include_once BB_DIR . '/lib/functions/security-headers.php';
 }
