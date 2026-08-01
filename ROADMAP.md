@@ -59,6 +59,16 @@ Landed on the `tooling` branch (see #11), closing section 4:
 - [x] `wp-scripts build` targeted a nonexistent `src/`. Removed from `npm run zip` and from the
       release workflow, along with the `start`, `start:hot` and `format:src` scaffolding scripts.
 
+Landed on the `uninstall` branch (see #10), closing section 3:
+
+- [x] There was no `uninstall.php` and no uninstall policy, so "content survives deletion" was
+      incidental rather than decided. It is now explicit: `uninstall.php` documents that CPT
+      content is never touched, and removes only plugin-update-checker's bookkeeping — the
+      `external_updates-*` site option, the `puc_manual_check_errors-*` site transient and the
+      `puc_cron_check_updates-*` cron event. PUC clears that cron on deactivation, but deleting a
+      plugin does not always deactivate it first, and `uninstall.php` runs without the plugin
+      loaded, so the names are hard-coded and tied to the slug in `buildUpdateChecker()`.
+
 ## 1. Defuse the dead update filter — done, see the Done section
 
 ## 2. Add activation lifecycle and flush rewrite rules
@@ -70,11 +80,7 @@ anywhere. Their archives 404 after a fresh activation until someone re-saves Per
 Per the lifecycle guardrails, register the hook at top level in `plugin.php`, call the same CPT
 registration function used on `init`, *then* flush — and flush again on deactivation.
 
-## 3. Decide and document an uninstall policy
-
-There is no `uninstall.php` and no `register_uninstall_hook()`. Leaving CPT content in place on
-uninstall is almost certainly correct for this site — the point of the plugin is that content
-outlives the theme — but the decision should be explicit rather than incidental.
+## 3. Decide and document an uninstall policy — done, see the Done section
 
 ## 4. Fix the tooling that only looks like it works — done, see the Done section
 
