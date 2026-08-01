@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [1.4.0](https://github.com/Herm71/rcid-core-functionality/compare/v1.3.1...v1.4.0) (2026-08-01)
+
+### Features
+
+* :lock: Restructure the CSP and trial a hardened policy report-only ([#21](https://github.com/Herm71/rcid-core-functionality/issues/21)) ([2cb6a46](https://github.com/Herm71/rcid-core-functionality/commit/2cb6a469c3870e3221765698c6b1b26fe6e23150)), closes [#14](https://github.com/Herm71/rcid-core-functionality/issues/14)
+* :wastebasket: Add uninstall.php and make the uninstall policy explicit ([#22](https://github.com/Herm71/rcid-core-functionality/issues/22)) ([254e30b](https://github.com/Herm71/rcid-core-functionality/commit/254e30be6955800e79ff7b43eda241c2a7fe7465)), closes [#10](https://github.com/Herm71/rcid-core-functionality/issues/10), references [#17](https://github.com/Herm71/rcid-core-functionality/issues/17)
+
+### Bug Fixes
+
+* :bug: Flush rewrite rules on activation so CPT archives resolve ([#23](https://github.com/Herm71/rcid-core-functionality/issues/23)) ([c023cc3](https://github.com/Herm71/rcid-core-functionality/commit/c023cc301834a13a7f91b42c2f495fdc83e287b0)), closes [#9](https://github.com/Herm71/rcid-core-functionality/issues/9)
 ## [1.3.1](https://github.com/Herm71/rcid-core-functionality/compare/v1.3.0...v1.3.1) (2026-08-01)
 
 ### Bug Fixes
