@@ -44,6 +44,21 @@ Landed on the `update-filter` branch (see #8), closing section 1:
       `core-functionality` exists in the wordpress.org directory, so the slug collision it guarded
       against is hypothetical, and updates now come from GitHub releases via plugin-update-checker.
 
+Landed on the `tooling` branch (see #11), closing section 4:
+
+- [x] `composer lint` did not run at all — with no `phpcs.xml` and no path argument it exited 3 with
+      "You must supply at least one file or directory to process". A `phpcs.xml` now selects
+      WordPress Coding Standards and carries a `<file>.</file>` element so the script has something
+      to check. 486 findings, 475 auto-fixed by `phpcbf`; the remaining 11 were fixed by hand.
+- [x] `.editorconfig` declared tabs while the code used 4-space PEAR indentation. Adopting WPCS
+      moved the code to tabs, so the two now agree without touching `.editorconfig`.
+- [x] `npm test` ran `lint-staged` with no configuration anywhere and could never fail. It now runs
+      `phpcs` over staged PHP and `wp-scripts format` over staged JS/JSON/YAML/MD. Note `phpcbf`
+      cannot be used as the gate: it exits 255 even when it succeeds in fixing something. No git
+      hook is wired up, so it only runs when invoked.
+- [x] `wp-scripts build` targeted a nonexistent `src/`. Removed from `npm run zip` and from the
+      release workflow, along with the `start`, `start:hot` and `format:src` scaffolding scripts.
+
 ## 1. Defuse the dead update filter — done, see the Done section
 
 ## 2. Add activation lifecycle and flush rewrite rules
@@ -61,20 +76,7 @@ There is no `uninstall.php` and no `register_uninstall_hook()`. Leaving CPT cont
 uninstall is almost certainly correct for this site — the point of the plugin is that content
 outlives the theme — but the decision should be explicit rather than incidental.
 
-## 4. Fix the tooling that only looks like it works
-
-- **`composer lint` runs the wrong standard.** `wp-coding-standards/wpcs` is a declared dev
-  dependency, but there is no `phpcs.xml`, so PHPCS falls back to PEAR. That is why the codebase
-  uses 4-space indents, next-line braces, and `if (! is_admin() ) {` spacing, and why every
-  existing docblock reports tag-ordering errors. Adding a `phpcs.xml` that selects WPCS would
-  reclassify most of the current ~90 findings; expect a large but mechanical `phpcbf` pass.
-- **`.editorconfig` declares tabs**, contradicting the actual PHP formatting. Reconcile it with
-  whichever standard is chosen above.
-- **`npm test` runs `lint-staged` with no configuration** in `package.json` or any `.lintstagedrc`.
-  It cannot fail and must not be read as a passing check. Either configure it or drop the script.
-- **`npm run build` targets a `src/` directory that does not exist** (leftover block-theme
-  scaffolding). Only the `plugin-zip` half of `npm run zip` is meaningful. The release workflow
-  runs `npm run build` on every tag, so this is dead weight in CI too.
+## 4. Fix the tooling that only looks like it works — done, see the Done section
 
 ## 5. Correct plugin metadata — done, see the Done section
 

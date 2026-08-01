@@ -29,10 +29,7 @@ jobs:
             - name: Install PHP dependencies
               run: composer install --no-dev --optimize-autoloader --prefer-dist --no-interaction
 
-            - name: Build theme
-              run: npm run build
-
-            - name: Package theme
+            - name: Package plugin
               run: ./node_modules/.bin/wp-scripts plugin-zip
 
             - name: Release
