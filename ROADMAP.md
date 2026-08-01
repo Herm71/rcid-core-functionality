@@ -35,30 +35,16 @@ Landed on the `plugin-metadata` branch (see #12), closing section 5:
       "either version 2 ... or (at your option) any later version" wording.
 - [x] `Text Domain`, `Requires at least` (6.0) and `Requires PHP` (8.0) headers were missing.
 
-## 1. Defuse the dead update filter in `lib/functions/general.php`
+Landed on the `update-filter` branch (see #8), closing section 1:
 
-`rcid_custom_functionality_hidden()` has four compounding faults and currently does nothing:
+- [x] `rcid_custom_functionality_hidden()` in `general.php` was dead code with four compounding
+      faults, including an `unserialize()` result written to as an object — a fatal under PHP 8
+      that only fault 1 (an `http://` scheme test against an endpoint WordPress calls over https)
+      kept from firing. Deleted rather than repaired: neither `rcid-core-functionality` nor
+      `core-functionality` exists in the wordpress.org directory, so the slug collision it guarded
+      against is hypothetical, and updates now come from GitHub releases via plugin-update-checker.
 
-1. The guard tests `strpos($url, 'http://api.wordpress.org/...')`, but WordPress requests that
-   endpoint over **https** whenever SSL is supported. It bails on every request.
-2. `plugin_basename(__FILE__)` resolves to `rcid-core-functionality/lib/functions/general.php`,
-   while the plugin list is keyed by `rcid-core-functionality/plugin.php`. It could never have
-   matched — the file was moved into `lib/` without the constant being updated.
-3. Because the match fails, `array_search()` returns `false` and `unset($plugins->active[false])`
-   deletes **index 0** — an unrelated active plugin, which would then stop receiving update checks.
-4. `unserialize()` expects a payload WordPress no longer sends (the 1.1 endpoint is JSON), so it
-   returns `false`, and the next line writes a property on a bool — fatal under PHP 8.
-
-It is inert today *only* because fault 1 short-circuits before the rest. Anyone modernizing that
-URL check trips the other three at once.
-
-**Decision required.** Either:
-
-- **Delete it.** The plugin updates from its own GitHub releases via plugin-update-checker, not
-  from WordPress.org, so the original rationale (a public plugin colliding on slug) no longer
-  applies. This is the low-risk option.
-- **Repair it.** Fix the scheme check, use `plugin_basename(BB_DIR . '/plugin.php')`, guard the
-  `array_search()` result before unsetting, and decode/encode JSON rather than serialize.
+## 1. Defuse the dead update filter — done, see the Done section
 
 ## 2. Add activation lifecycle and flush rewrite rules
 
