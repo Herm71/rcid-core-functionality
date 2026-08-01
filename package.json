@@ -30,7 +30,7 @@
 		"plugin"
 	],
 	"author": "Jason <jchafin@ucsc.edu>",
-	"license": "ISC",
+	"license": "GPL-2.0-or-later",
 	"bugs": {
 		"url": "https://github.com/Herm71/rcid-core-functionality/issues"
 	},
