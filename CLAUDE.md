@@ -24,7 +24,7 @@ composer install
 | JS/CSS lint | `npm run lint:js`, `npm run lint:style` |
 | Format | `npm run format` |
 | Package a zip | `npm run zip` |
-| Cut a release | `npm run release` (standard-version) |
+| Cut a release | `npm run release` (commit-and-tag-version) |
 
 Caveats worth knowing before you run these:
 
@@ -37,9 +37,9 @@ Caveats worth knowing before you run these:
 
 Releases are tag-driven: `.github/workflows/release.yml` fires on a pushed `v*.*.*` tag, runs the npm build, packages with `wp-scripts plugin-zip`, and attaches `rcid-core-functionality.zip` to a GitHub release.
 
-**The version lives in two places and only one is automated.** `standard-version` bumps `package.json` and writes `CHANGELOG.md`, but it does *not* touch the `Version:` header in [plugin.php](plugin.php) — WordPress reads that header for its update checks. Bump `plugin.php` by hand in the same feature/fix commit *before* running `npm run release`, or the shipped plugin will report a stale version. Every past release in this repo follows that pattern.
+**The version lives in two places, and both are now automated.** `commit-and-tag-version` bumps `package.json`, `package-lock.json`, and — via the `bumpFiles` entry in `package.json` — the `Version:` header in [plugin.php](plugin.php), which is what WordPress reads for its update checks. That header is rewritten by [wp-plugin-version-updater.js](wp-plugin-version-updater.js), a small `readVersion`/`writeVersion` module; the built-in `plain-text` updater can't be used because it expects a file containing nothing but a version string. Do *not* bump `plugin.php` by hand anymore (releases through v1.2.2 did, which is why older commits look that way) — a hand-edit that lands in the same commit range just makes the two disagree.
 
-Commits use Conventional Commits with gitmoji in the subject (e.g. `fix: :art: Adjust order of google <script> tags`); standard-version parses the `feat:`/`fix:` prefix to pick the bump.
+Commits use Conventional Commits with gitmoji in the subject (e.g. `fix: :art: Adjust order of google <script> tags`); commit-and-tag-version parses the `feat:`/`fix:` prefix to pick the bump. Sanity-check a release with `npx commit-and-tag-version --dry-run` before running it for real.
 
 ## Architecture
 
