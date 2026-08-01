@@ -92,13 +92,17 @@ Now that the open tag is fixed, `shortcodes.php` would actually work if its `inc
 
 ## 7. Ongoing: CSP maintenance
 
-The `Content-Security-Policy` string in `security-headers.php` is a single long inline literal and
-has been the subject of several hotfix releases (v1.1.2, v1.1.3). Any newly added external script,
-font, or embed must be allowlisted there or it fails silently in production. Consider splitting the
-directives into an array keyed by directive name so additions are reviewable in a diff.
+The directives now live in `rcid_csp_enforced_directives()` and are reviewable in a diff (#14).
+Two things remain:
 
-Note that it still carries `http://*` in `default-src`, which substantially weakens the policy, and
-`X-XSS-Protection`, which is deprecated and ignored by current browsers.
+- **Flip the report-only policy to enforced.** `rcid_csp_report_only_directives()` ships as
+  `Content-Security-Policy-Report-Only`. Once real traffic produces no console violations, swap it
+  into the enforced slot and delete the old permissive one. Until then the site has no meaningful
+  CSP protection: `default-src` carries `http://*`, which CSP matches against https origins too, so
+  it permits everything.
+- **Remove `'unsafe-inline'` / `'unsafe-eval'` from `script-src`.** Both are still required by the
+  inline Google Tag Manager snippet in `gtm.php`. A nonce-based approach would remove the need, but
+  the nonce has to reach the snippet, so it is a change to `gtm.php` as much as to the CSP.
 
 ## 8. Upstream: report the plugin detector bug
 
