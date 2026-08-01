@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [1.3.1](https://github.com/Herm71/rcid-core-functionality/compare/v1.3.0...v1.3.1) (2026-08-01)
+
+### Bug Fixes
+
+* :art: Make the linting and build tooling actually run ([#20](https://github.com/Herm71/rcid-core-functionality/issues/20)) ([ce1104a](https://github.com/Herm71/rcid-core-functionality/commit/ce1104a9ef9d5fd7dff1fcc5bffd975abf51664a)), closes [#11](https://github.com/Herm71/rcid-core-functionality/issues/11), references [#6](https://github.com/Herm71/rcid-core-functionality/issues/6)
 ## [1.3.0](https://github.com/Herm71/rcid-core-functionality/compare/v1.2.2...v1.3.0) (2026-08-01)
 
 ### ⚠ Upgrade notes
