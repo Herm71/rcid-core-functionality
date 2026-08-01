@@ -55,4 +55,10 @@ Per-file responsibilities:
 - **[disable-xmlrpc.php](lib/functions/disable-xmlrpc.php)** — empties `xmlrpc_methods` at `PHP_INT_MAX` and removes `rsd_link`, per Pantheon's brute-force guidance. The site is Pantheon-hosted, which is also why Pantheon best-practice docs are cited throughout.
 - **[general.php](lib/functions/general.php)** — currently just the Mark Jaquith `http_request_args` trick that hides this plugin from wordpress.org update checks (a public plugin sharing the slug would otherwise clobber it). Catch-all for theme-independent odds and ends.
 
-The plugin is installed/updated via `GitHub Plugin URI` in the plugin header (git-based updater), not from the WordPress.org repository.
+The plugin updates itself from its own GitHub releases, not from the WordPress.org repository. [plugin.php](plugin.php) bootstraps [Yahnis Elsts' plugin-update-checker](https://github.com/YahnisElsts/plugin-update-checker) (a Composer runtime dependency, so `vendor/` must be in the packaged zip — see the release workflow's `composer install --no-dev` step). Things to keep in mind when touching that block:
+
+- It is registered only for `is_admin()`, `wp_doing_cron()`, and WP-CLI. `is_admin()` is false under WP-CLI, so without that third condition `wp plugin update` reports no update available.
+- It is deliberately *not* gated on `wp_is_auto_update_enabled_for_type('plugin')`. That function only reports whether unattended background auto-updates are on; the update notice and the manual Update Now button both need the check to run regardless.
+- Release assets are set to `REQUIRE_RELEASE_ASSETS`. The default preference falls back to GitHub's source tarball, which has no `vendor/` — installing it would strip the updater out of the running plugin.
+
+An earlier `GitHub Plugin URI` header (for Andy Fragen's GitHub Updater) was removed when this landed; don't reintroduce it, or two updaters will write the same `update_plugins` transient.

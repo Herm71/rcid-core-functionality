@@ -45,9 +45,9 @@ URL check trips the other three at once.
 
 **Decision required.** Either:
 
-- **Delete it.** The plugin updates via `GitHub Plugin URI` in the header, not from
-  WordPress.org, so the original rationale (a public plugin colliding on slug) no longer applies.
-  This is the low-risk option.
+- **Delete it.** The plugin updates from its own GitHub releases via plugin-update-checker, not
+  from WordPress.org, so the original rationale (a public plugin colliding on slug) no longer
+  applies. This is the low-risk option.
 - **Repair it.** Fix the scheme check, use `plugin_basename(BB_DIR . '/plugin.php')`, guard the
   `array_search()` result before unsetting, and decode/encode JSON rather than serialize.
 
