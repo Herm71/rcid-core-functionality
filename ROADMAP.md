@@ -19,6 +19,13 @@ Landed on the `claude-init` branch (see #7), behavior-neutral on the live site:
 - [x] `rcid_additional_securityheaders()` had no doc comment of its own — it was borrowing the
       file docblock.
 
+Landed on the `updater` branch:
+
+- [x] The `Version:` header in `plugin.php` and the `version` in `package.json` had to be bumped
+      together by hand. `standard-version` (unmaintained since 2022) has been replaced by its
+      maintained fork `commit-and-tag-version`, and a `bumpFiles` entry now rewrites the plugin
+      header through `wp-plugin-version-updater.js`, so the two cannot drift.
+
 ## 1. Defuse the dead update filter in `lib/functions/general.php`
 
 `rcid_custom_functionality_hidden()` has four compounding faults and currently does nothing:
@@ -38,9 +45,9 @@ URL check trips the other three at once.
 
 **Decision required.** Either:
 
-- **Delete it.** The plugin updates via `GitHub Plugin URI` in the header, not from
-  WordPress.org, so the original rationale (a public plugin colliding on slug) no longer applies.
-  This is the low-risk option.
+- **Delete it.** The plugin updates from its own GitHub releases via plugin-update-checker, not
+  from WordPress.org, so the original rationale (a public plugin colliding on slug) no longer
+  applies. This is the low-risk option.
 - **Repair it.** Fix the scheme check, use `plugin_basename(BB_DIR . '/plugin.php')`, guard the
   `array_search()` result before unsetting, and decode/encode JSON rather than serialize.
 
@@ -79,11 +86,6 @@ outlives the theme — but the decision should be explicit rather than incidenta
 - The header declares `License: GPL2` while `package.json` declares `ISC`. Pick one.
 - Missing `Text Domain`, `Requires at least`, and `Requires PHP` headers. `Requires PHP` matters
   here given the PHP 8 hazard described in item 1.
-- The `Version:` header in `plugin.php` and the `version` in `package.json` must be bumped
-  together; `standard-version` only touches the latter. Worth automating via a `.versionrc`
-  `bumpFiles` entry pointing at a small custom `updater` module that rewrites the `Version:` header,
-  so the two cannot drift. The built-in `plain-text` updater will not work here — it expects a file
-  containing only a version string.
 
 ## 6. Shortcodes: decide whether to re-enable
 
