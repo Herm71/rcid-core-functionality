@@ -12,7 +12,7 @@ This plugin can be expanded as use-cases arise. It currently features the follow
 
 -   `post-types.php` -- registers the custom post types (see below)
 
--   `security-headers.php` -- adds security headers such as Content Security Policy
+-   `security-headers.php` -- adds security headers such as Content Security Policy (see [Configuration](#configuration))
 
 -   `gtm.php` -- adds the Google Tag Manager container snippet
 
@@ -37,6 +37,21 @@ All three are registered with `show_in_rest => true`, which the block editor req
 A fourth post type, `team_member`, is defined in `post-types.php` but deliberately **not** registered — its `add_action( 'init', ... )` is commented out.
 
 New post types must be added to the `rcid_register_post_types()` aggregator rather than hooked to `init` directly. That aggregator is shared by the `init` hook and the activation hook, and if the two paths diverge the new archive will 404 on a fresh activation.
+
+## Configuration
+
+The plugin has no settings screen. The one thing it reads is an optional constant in `wp-config.php`:
+
+```php
+// Where browsers should send Content-Security-Policy violation reports.
+define( 'RCID_CSP_REPORT_URI', 'https://xxxxx.report-uri.com/r/d/csp/reportOnly' );
+```
+
+Two Content-Security-Policy headers are sent: an enforced one, and a stricter candidate sent as `Content-Security-Policy-Report-Only` so it can be evaluated against real traffic before it replaces the enforced one. Without `RCID_CSP_REPORT_URI` the report-only policy's violations appear only in an individual visitor's browser console and are lost. Setting it adds `report-uri` and `report-to` directives and a matching `Reporting-Endpoints` header, so violations from real traffic are collected somewhere you can read them.
+
+If the constant is unset — or set to anything that is not a valid `https` URL — no reporting directives are emitted at all. The URL is kept out of the repository because collector URLs embed an account identifier.
+
+`RCID_CSP_REPORT_TO_URI` is an optional second constant, for collectors that issue a different URL for the modern Reporting API than for the legacy `report-uri` directive. It defaults to the same endpoint.
 
 ## Activation and deactivation
 
