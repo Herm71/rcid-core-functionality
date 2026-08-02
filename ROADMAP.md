@@ -82,6 +82,17 @@ Landed on the `activation` branch (see #9), closing section 2:
       `rcid_register_post_types()`, shared by `init` and the activation hook, so the two paths
       cannot drift and leave a new CPT's archive unroutable.
 
+Fixed upstream in [WordPress/agent-skills#88](https://github.com/WordPress/agent-skills/pull/88)
+(see #15), closing section 8 — no change to this plugin:
+
+- [x] The `wp-plugin-development` skill's `scripts/detect_plugins.mjs` reported `count: 0` for this
+      repo. Its header regex was `^\s*Plugin Name:`, which does not allow the leading `*` of a
+      docblock, so ` * Plugin Name: ...` never matched; the looser `/Plugin Name:/i` guard passed
+      first, so `plugin.php` was opened and then silently discarded. The fix allows the same leading
+      comment characters WordPress core allows in `get_file_data()` (`^[ \t\/*#@]*`) and strips a
+      trailing `*/` or `?>` the way core's `_cleanup_header_comment()` does. This repo is the
+      verification case in that PR: `count` goes 0 → 1 with all eight header fields parsed.
+
 ## 1. Defuse the dead update filter — done, see the Done section
 
 ## 2. Add activation lifecycle and flush rewrite rules — done, see the Done section
@@ -116,8 +127,4 @@ Two things remain:
   inline Google Tag Manager snippet in `gtm.php`. A nonce-based approach would remove the need, but
   the nonce has to reach the snippet, so it is a change to `gtm.php` as much as to the CSP.
 
-## 8. Upstream: report the plugin detector bug
-
-The `wp-plugin-development` skill's `scripts/detect_plugins.mjs` reports `count: 0` for this repo.
-Its header regex is `^\s*Plugin Name:`, which does not allow the leading `*` of a docblock;
-WordPress core uses `^[ \t\/*#@]*`. It will miss essentially every conventionally-formatted plugin.
+## 8. Upstream: report the plugin detector bug — done, see the Done section
