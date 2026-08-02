@@ -21,7 +21,7 @@ jobs:
                   cache: 'npm'
 
             - name: Install Node dependencies
-              run: npm install
+              run: npm ci
 
             # Ships the plugin-update-checker runtime into vendor/ so it is
             # present in the packaged zip. Without this the updater silently
@@ -33,7 +33,7 @@ jobs:
               run: ./node_modules/.bin/wp-scripts plugin-zip
 
             - name: Release
-              uses: softprops/action-gh-release@v1
+              uses: softprops/action-gh-release@v2
               with:
                   files: rcid-core-functionality.zip
                   generate_release_notes: true
