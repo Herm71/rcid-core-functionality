@@ -3,7 +3,7 @@
  * Plugin Name: Ruth Chafin Interior Design Core Functionality
  * Plugin URI: https://github.com/Herm71/rcid-core-functionality.git
  * Description: Contains custom functionality. Theme independent.
- * Version: 1.5.0
+ * Version: 1.6.0
  * Author: Jason Chafin
  * Author URI: https://github.com/Herm71
  * License: GPL-2.0-or-later
