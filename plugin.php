@@ -81,15 +81,6 @@ if ( file_exists( BB_DIR . '/lib/functions/gtm.php' ) ) {
 	include_once BB_DIR . '/lib/functions/gtm.php';
 }
 
-// Shortcodes. Commenting an include out is the intended enable/disable
-// mechanism here, so this block is deliberately dead code — see #6 for the
-// decision on whether to re-enable it.
-// phpcs:disable Squiz.Commenting.InlineComment.InvalidEndChar
-// if ( file_exists( BB_DIR . '/lib/functions/shortcodes.php' ) ) {
-// include_once BB_DIR . '/lib/functions/shortcodes.php';
-// }
-// phpcs:enable Squiz.Commenting.InlineComment.InvalidEndChar
-
 // Disable XMLRP.
 if ( file_exists( BB_DIR . '/lib/functions/disable-xmlrpc.php' ) ) {
 	include_once BB_DIR . '/lib/functions/disable-xmlrpc.php';

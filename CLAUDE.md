@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this is
 
-A WordPress "core functionality" plugin for [Ruth Chafin Interior Design](https://ruthchafininteriordesign.com). It deliberately holds only *theme-independent* behavior — custom post types, security headers, analytics, shortcodes — so that swapping or rewriting the companion block theme ([rcid-block-theme](https://github.com/Herm71/rcid-block-theme)) never breaks site functionality. When deciding where a change belongs: if it would survive a theme change, it goes here; if it's presentation, it goes in the theme.
+A WordPress "core functionality" plugin for [Ruth Chafin Interior Design](https://ruthchafininteriordesign.com). It deliberately holds only *theme-independent* behavior — custom post types, security headers, analytics — so that swapping or rewriting the companion block theme ([rcid-block-theme](https://github.com/Herm71/rcid-block-theme)) never breaks site functionality. When deciding where a change belongs: if it would survive a theme change, it goes here; if it's presentation, it goes in the theme.
 
 There is no build step for the PHP that ships — this is plain procedural PHP with `add_action`/`add_filter` calls at file scope. No classes, no autoloader, no `src/` directory.
 
@@ -47,7 +47,7 @@ Commits use Conventional Commits with gitmoji in the subject (e.g. `fix: :art: A
 
 ## Architecture
 
-[plugin.php](plugin.php) is a loader and nothing else: it defines `BB_DIR` and conditionally `include_once`s each file in [lib/functions/](lib/functions/). Adding a feature means creating a file there and adding an include block. Files are enabled/disabled by commenting out their include — that is the intended mechanism, and it's why [lib/functions/shortcodes.php](lib/functions/shortcodes.php) is present but currently not loaded.
+[plugin.php](plugin.php) is a loader and nothing else: it defines `BB_DIR` and conditionally `include_once`s each file in [lib/functions/](lib/functions/). Adding a feature means creating a file there and adding an include block. Files are enabled/disabled by commenting out their include — that is the intended mechanism, though every file currently in the directory is loaded.
 
 Function names are prefixed `rcid_` to avoid collisions in the global namespace.
 
