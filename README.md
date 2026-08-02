@@ -17,5 +17,3 @@ This plugin can be expanded as use-cases arise. It currently features the follow
 * `post-types.php` -- for registering custom post types
 
 * `security-headers.php` -- adds security headers such as Content Security Policy
-
-* `shortcodes.php` -- for custom custom shortcodes

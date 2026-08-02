@@ -93,6 +93,17 @@ Fixed upstream in [WordPress/agent-skills#88](https://github.com/WordPress/agent
       trailing `*/` or `?>` the way core's `_cleanup_header_comment()` does. This repo is the
       verification case in that PR: `count` goes 0 → 1 with all eight header fields parsed.
 
+Landed on the `shortcodes` branch (see #13), closing section 6:
+
+- [x] The question was whether to re-enable `shortcodes.php`. Answered by deleting it. Its
+      `include_once` in `plugin.php` had been commented out for the plugin's whole history, so
+      `show-current-year` was never a registered shortcode and any `[show-current-year]` in content
+      has always rendered as literal text — removing the file changes nothing on the live site. The
+      two defects the section listed (`date()` reading the server timezone, a `@return void`
+      docblock on a function returning a string) are moot. References in `plugin.php`, `README.md`
+      and `CLAUDE.md` went with it; the `CHANGELOG.md` entry for the old open-tag fix stays, as
+      history.
+
 ## 1. Defuse the dead update filter — done, see the Done section
 
 ## 2. Add activation lifecycle and flush rewrite rules — done, see the Done section
@@ -103,15 +114,7 @@ Fixed upstream in [WordPress/agent-skills#88](https://github.com/WordPress/agent
 
 ## 5. Correct plugin metadata — done, see the Done section
 
-## 6. Shortcodes: decide whether to re-enable
-
-Now that the open tag is fixed, `shortcodes.php` would actually work if its `include_once` in
-`plugin.php` were uncommented. Before doing so:
-
-- `rcid_show_current_year()` uses `date('Y')`, which reads the **server** timezone, not the site's.
-  Use `wp_date('Y')` so the year rolls over correctly relative to the site's configured timezone.
-- Its docblock claims `@return void`, but the function returns a string — and a shortcode callback
-  must return, never echo.
+## 6. Shortcodes: decide whether to re-enable — done, see the Done section
 
 ## 7. Ongoing: CSP maintenance
 
