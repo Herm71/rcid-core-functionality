@@ -2,9 +2,37 @@
 	"name": "rcid-core-functionality",
 	"version": "1.5.0",
 	"description": "Core functionality plugin for RCID WordPress",
-	"main": "build/index.js",
+	"author": "Jason Chafin <jasonchafin@gmail.com>",
+	"license": "GPL-2.0-or-later",
+	"keywords": [
+		"wordpress",
+		"plugin"
+	],
+	"homepage": "https://github.com/Herm71/rcid-core-functionality#readme",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/Herm71/rcid-core-functionality.git"
+	},
+	"bugs": {
+		"url": "https://github.com/Herm71/rcid-core-functionality/issues"
+	},
 	"directories": {
 		"lib": "lib"
+	},
+	"files": [
+		"lib",
+		"vendor",
+		"*.php",
+		"README.md",
+		"LICENSE",
+		"CHANGELOG.md"
+	],
+	"devDependencies": {
+		"@wordpress/prettier-config": "^3.5.0",
+		"@wordpress/scripts": "^34.0.0",
+		"commit-and-tag-version": "^13.1.2",
+		"lint-staged": "^15.2.0",
+		"prettier": "^3.1.1"
 	},
 	"scripts": {
 		"format": "wp-scripts format",
@@ -17,35 +45,6 @@
 		"test": "lint-staged",
 		"zip": "wp-scripts plugin-zip"
 	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/Herm71/rcid-core-functionality.git"
-	},
-	"keywords": [
-		"wordpress",
-		"plugin"
-	],
-	"author": "Jason <jchafin@ucsc.edu>",
-	"license": "GPL-2.0-or-later",
-	"bugs": {
-		"url": "https://github.com/Herm71/rcid-core-functionality/issues"
-	},
-	"homepage": "https://github.com/Herm71/rcid-core-functionality#readme",
-	"devDependencies": {
-		"@wordpress/prettier-config": "^3.5.0",
-		"@wordpress/scripts": "^34.0.0",
-		"commit-and-tag-version": "^13.1.2",
-		"lint-staged": "^15.2.0",
-		"prettier": "^3.1.1"
-	},
-	"files": [
-		"lib",
-		"vendor",
-		"*.php",
-		"README.md",
-		"LICENSE",
-		"CHANGELOG.md"
-	],
 	"lint-staged": {
 		"*.php": "./vendor/bin/phpcs",
 		"*.{js,json,yml,yaml,md}": "wp-scripts format"
