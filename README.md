@@ -81,6 +81,8 @@ composer install
 
 PHP follows the [WordPress Coding Standards](https://developer.wordpress.org/coding-standards/wordpress-coding-standards/), selected by `phpcs.xml`. There is no build step and no test suite.
 
+`npm install` also installs a husky pre-commit hook that runs `lint-staged` over staged files, so `phpcs` and the formatter run before a commit lands. The same checks run in CI on every pull request via `.github/workflows/lint.yml`, which is the gate that actually blocks — the hook is fast feedback and can be skipped with `git commit --no-verify`.
+
 Releases are tag-driven: pushing a `v*.*.*` tag runs `.github/workflows/release.yml`, which packages the plugin and attaches the zip to a GitHub release. The version lives in both `package.json` and the `Version:` header in `plugin.php`; `commit-and-tag-version` bumps both, so neither should be edited by hand.
 
 See [CLAUDE.md](CLAUDE.md) for the fuller architecture notes.

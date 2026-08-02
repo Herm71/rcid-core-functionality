@@ -12,26 +12,26 @@
 
 const VERSION_PATTERN = /(Version:\s*)(\d+\.\d+\.\d+(?:-[\w.]+)?)/;
 
-module.exports.readVersion = function (contents) {
-	const found = contents.match(VERSION_PATTERN);
+module.exports.readVersion = function ( contents ) {
+	const found = contents.match( VERSION_PATTERN );
 
-	if (!found) {
+	if ( ! found ) {
 		throw new Error(
 			'wp-plugin-version-updater: no "Version:" header found. ' +
-				"Expected a line like ' * Version: 1.2.3'.",
+				"Expected a line like ' * Version: 1.2.3'."
 		);
 	}
 
-	return found[2];
+	return found[ 2 ];
 };
 
-module.exports.writeVersion = function (contents, version) {
-	if (!VERSION_PATTERN.test(contents)) {
+module.exports.writeVersion = function ( contents, version ) {
+	if ( ! VERSION_PATTERN.test( contents ) ) {
 		throw new Error(
 			'wp-plugin-version-updater: no "Version:" header to update. ' +
-				"Refusing to write, as the plugin header would silently drift from package.json.",
+				'Refusing to write, as the plugin header would silently drift from package.json.'
 		);
 	}
 
-	return contents.replace(VERSION_PATTERN, `$1${version}`);
+	return contents.replace( VERSION_PATTERN, `$1${ version }` );
 };

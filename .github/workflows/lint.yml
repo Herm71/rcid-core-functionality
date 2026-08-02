@@ -1,0 +1,77 @@
+name: Lint
+
+# Runs on every pull request, and on main after merge. Deliberately not tied to
+# tags: release.yml only fires on a v*.*.* tag, which is far too late to learn
+# that the coding standards were broken.
+on:
+    push:
+        branches:
+            - main
+    pull_request:
+
+# A new push to a branch makes the in-flight run for that branch pointless.
+concurrency:
+    group: lint-${{ github.ref }}
+    cancel-in-progress: true
+
+permissions:
+    contents: read
+
+jobs:
+    php:
+        name: PHP coding standards
+        runs-on: ubuntu-latest
+
+        steps:
+            - uses: actions/checkout@v4
+
+            # Linted on the oldest version the plugin claims to support, per the
+            # Requires PHP header in plugin.php.
+            - uses: shivammathur/setup-php@v2
+              with:
+                  php-version: '8.0'
+                  coverage: none
+
+            - name: Cache Composer packages
+              uses: actions/cache@v4
+              with:
+                  path: ~/.cache/composer/files
+                  key: composer-${{ hashFiles('composer.lock') }}
+                  restore-keys: composer-
+
+            # Dev dependencies are the point here — phpcs and WPCS live there.
+            - name: Install PHP dependencies
+              run: composer install --no-interaction --prefer-dist
+
+            - name: Validate composer.json
+              run: composer validate --no-check-publish
+
+            - name: Check coding standards
+              run: composer lint
+
+    js:
+        name: JS, JSON and Markdown
+        runs-on: ubuntu-latest
+
+        steps:
+            - uses: actions/checkout@v4
+
+            - uses: actions/setup-node@v4
+              with:
+                  node-version: 20
+                  cache: 'npm'
+
+            - name: Install Node dependencies
+              run: npm ci
+
+            - name: Lint package.json
+              run: npm run lint:pkg-json
+
+            # wp-scripts format rewrites files in place and offers no --check
+            # mode, so run it and fail if the tree moved. Using the same command
+            # lint-staged runs on commit means the hook and CI cannot disagree
+            # about what "formatted" means.
+            - name: Check formatting
+              run: |
+                  npm run format
+                  git diff --exit-code
